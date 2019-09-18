@@ -68,7 +68,7 @@ pip install roses
 Examples of configuring and running all the included algorithms are located in the *test* folders [roses folder](roses).
 
 ## Features
-The current release of ROSE (v0.5) contains the following tests:
+The current release of **ROSES** (v0.1) contains the following tests:
 
 * Kruskal-Wallis with Post-hoc when necessary (comparing p-value)
 * Friedman  with Critical Distance plot and Post-hoc when necessary (comparing p-value)
