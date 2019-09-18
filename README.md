@@ -1,6 +1,9 @@
 # ROSES 
 ROSES (**R** pyth**O**n **S**tatistical t**E**st**S**) is a package to use statistical tests from R to Python for multiple algorithms in multiple problems.
 
+[![PyPI License](https://img.shields.io/pypi/l/jMetalPy.svg?style=flat-square)]()
+[![PyPI Python version](https://img.shields.io/pypi/pyversions/jMetalPy.svg?style=flat-square)]()
+
 This package was created due to differences in the precision from other Python packages for statistical tests. As R is a programming language with excellent libraries for statistical, **ROSES** was created as a bridge (parses) to use them.  
 
 ## Table of Contents
