@@ -21,7 +21,7 @@ setup(
     url='https://github.com/jacksonpradolima/roses',
     packages=find_packages(exclude=['test_']),
     classifiers=[
-        'Programming Language :: Python :: 3.6'
+        'Programming Language :: Python :: 3.6',
         "Operating System :: OS Independent",
         'License :: OSI Approved :: MIT License',
         'Development Status :: 3 - Alpha',
