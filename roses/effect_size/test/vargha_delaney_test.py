@@ -1,6 +1,9 @@
 import unittest
+
 import pandas as pd
-from rose.effect_size.vargha_delaney import VD_A, VD_A_DF, reduce
+
+from roses.effect_size.vargha_delaney import VD_A, VD_A_DF, reduce
+
 
 class RunningEffectSize(unittest.TestCase):
     def test_VD_A_negligible(self):

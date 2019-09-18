@@ -8,9 +8,9 @@ with open(join(basedir, 'README.md')) as f:
     README = f.read()
 
 setup(
-    name='ROSE',
+    name='roses',
     version='0.1',
-    description='ROSE (R pythOn Statistical tEst) is a module to use statistical tests from R to Python',
+    description='ROSES (R pythOn Statistical tEstS) is a package to use statistical tests from R to Python',
     long_description=README,
     long_description_content_type='text/markdown',
     author='Jackson Antonio do Prado Lima',
@@ -18,7 +18,7 @@ setup(
     maintainer='Jackson Antonio do Prado Lima',
     maintainer_email='jacksonpradolima@gmail.com',
     license='MIT',
-    url='https://github.com/jacksonpradolima/ROSE',
+    url='https://github.com/jacksonpradolima/roses',
     packages=find_packages(exclude=['test_']),
     classifiers=[
         'Programming Language :: Python :: 3.6'

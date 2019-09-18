@@ -1,13 +1,12 @@
 import warnings
 
-import pandas as pd
 import numpy as np
-
+import pandas as pd
 import rpy2.robjects as robjects
 from rpy2.rinterface import RRuntimeWarning
 from rpy2.robjects import pandas2ri
 
-from rose.utils.r_cheatsets import require_r_package
+from roses.utils.r_cheatsets import require_r_package
 
 # Filter the warnings from R
 warnings.filterwarnings("ignore", category=RRuntimeWarning)

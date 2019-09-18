@@ -2,7 +2,7 @@ import unittest
 import warnings
 import pandas as pd
 from rpy2.rinterface import RRuntimeWarning
-from rose.statistical_test.kruskal_wallis import kruskal_wallis
+from roses.statistical_test.kruskal_wallis import kruskal_wallis
 
 # Filter the warnings from R
 warnings.filterwarnings("ignore", category=RRuntimeWarning)

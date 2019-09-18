@@ -7,8 +7,8 @@ import seaborn as sns
 from rpy2.rinterface import RRuntimeWarning
 from rpy2.robjects import pandas2ri
 
-from rose.effect_size.vargha_delaney import VD_A_DF
-from rose.utils.r_cheatsets import require_r_package
+from roses.effect_size.vargha_delaney import VD_A_DF
+from roses.utils.r_cheatsets import require_r_package
 
 # Filter the warnings from R
 warnings.filterwarnings("ignore", category=RRuntimeWarning)

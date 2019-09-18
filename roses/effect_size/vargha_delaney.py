@@ -1,12 +1,10 @@
 import itertools as it
-
 from bisect import bisect_left
 from typing import List
 
 import numpy as np
 import pandas as pd
 import scipy.stats as ss
-
 from pandas import Categorical
 
 # turn off the SettingWithCopyWarning

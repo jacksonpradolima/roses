@@ -1,9 +1,9 @@
 import unittest
 import warnings
-import pandas as pd
-import numpy as np
+
 from rpy2.rinterface import RRuntimeWarning
-from rose.statistical_test.friedman import friedman
+
+from roses.statistical_test.friedman import friedman
 
 # Filter the warnings from R
 warnings.filterwarnings("ignore", category=RRuntimeWarning)
