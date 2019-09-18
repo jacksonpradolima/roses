@@ -62,7 +62,7 @@ pip install roses
 ```
 
 ## Usage
-Examples of configuring and running all the included algorithms are located [in the `examples` folder](examples).
+Examples of configuring and running all the included algorithms are located in the *test* folders [roses folder](roses).
 
 ## Features
 The current release of ROSE (v0.5) contains the following tests:
