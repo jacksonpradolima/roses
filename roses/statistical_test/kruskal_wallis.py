@@ -16,6 +16,7 @@ warnings.filterwarnings("ignore", category=RRuntimeWarning)
 # To use Pandas with R
 pandas2ri.activate()
 
+
 class kruskal_wallis(object):
     def __init__(self, df, val_col: str, group_col: str, sort=True):
         self.df = df
@@ -28,7 +29,8 @@ class kruskal_wallis(object):
         self.r_dataframe = pandas2ri.py2ri(self.df)
 
     def apply(self, alpha=0.05, plot=True, filename="kruskal", use_latex=False):
-        kruskal = pg.kruskal(dv=self.val_col, between=self.group_col, data=self.df)
+        kruskal = pg.kruskal(
+            dv=self.val_col, between=self.group_col, data=self.df)
         pvalue = kruskal['p-unc'][0]
 
         if plot:
@@ -41,17 +43,17 @@ class kruskal_wallis(object):
             sns.boxplot(x=self.group_col, y=self.val_col, data=self.df)
 
             # Jittered BoxPlots
-            sns.stripplot(x=self.group_col, y=self.val_col, data=self.df, size=4, jitter=True, edgecolor="gray")
+            sns.stripplot(x=self.group_col, y=self.val_col,
+                          data=self.df, size=4, jitter=True, edgecolor="gray")
 
             # Add mean and median lines
-            plt.axhline(y=self.df[self.val_col].mean(), color='r', linestyle='--', linewidth=1.5)
-            plt.axhline(y=self.df[self.val_col].median(), color='b', linestyle='--', linewidth=2)
-
-            plt.title("")
-            plt.suptitle("")
+            plt.axhline(y=self.df[self.val_col].mean(),
+                        color='r', linestyle='--', linewidth=1.5)
+            plt.axhline(y=self.df[self.val_col].median(),
+                        color='b', linestyle='--', linewidth=2)
             plt.xlabel(f"\nKruskal-Wallis chi-squared = {chi_squared}, df = {degree_freed}, p = {p}", labelpad=20)
-            plt.ylabel('')
-            plt.savefig(filename + ('.pgf' if use_latex else '.pdf'), bbox_inches='tight')
+            plt.savefig(filename + ('.pgf' if use_latex else '.pdf'),
+                        bbox_inches='tight')
             plt.clf()
 
         # If the Kruskal-Wallis test is significant, a post-hoc analysis can be performed
