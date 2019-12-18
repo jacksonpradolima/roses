@@ -40,7 +40,7 @@ devtools::install_github("b0rxa/scmamp")
 install.packages('PMCMR')
 install.packages("https://cran.r-project.org/src/contrib/Archive/mvtnorm/mvtnorm_1.0-8.tar.gz", repos=NULL)
 install.packages('PMCMRplus')
-install.packages('rgdal')
+install.packages("https://cran.r-project.org/src/contrib/Archive/rgdal/rgdal_1.3-6.tar.gz", repos=NULL)
 install.packages('pgirmess')
 ```
 
