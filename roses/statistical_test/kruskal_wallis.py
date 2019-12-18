@@ -28,7 +28,7 @@ class kruskal_wallis(object):
 
         self.r_dataframe = pandas2ri.py2ri(self.df)
 
-    def apply(self, alpha=0.05, plot=True, filename="kruskal", use_latex=False):
+    def apply(self, alpha=0.05, plot=True, filename="kruskal", use_latex=False, ylabel=''):
         kruskal = pg.kruskal(
             dv=self.val_col, between=self.group_col, data=self.df)
         pvalue = kruskal['p-unc'][0]
@@ -52,6 +52,7 @@ class kruskal_wallis(object):
             plt.axhline(y=self.df[self.val_col].median(),
                         color='b', linestyle='--', linewidth=2)
             plt.xlabel(f"\nKruskal-Wallis chi-squared = {chi_squared}, df = {degree_freed}, p = {p}", labelpad=20)
+            plt.ylabel(ylabel)
             plt.savefig(filename + ('.pgf' if use_latex else '.pdf'),
                         bbox_inches='tight')
             plt.clf()
