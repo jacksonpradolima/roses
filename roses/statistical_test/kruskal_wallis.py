@@ -28,34 +28,41 @@ class kruskal_wallis(object):
 
         self.r_dataframe = pandas2ri.py2ri(self.df)
 
-    def apply(self, alpha=0.05, plot=True, filename="kruskal", use_latex=False, ylabel=''):
+    def apply(self, alpha=0.05, plot=True, filename="kruskal", ax=None, ylabel=''):
         kruskal = pg.kruskal(
             dv=self.val_col, between=self.group_col, data=self.df)
         pvalue = kruskal['p-unc'][0]
 
-        if plot:
+        if plot:            
             chi_squared = kruskal['H'][0]
             degree_freed = kruskal['ddof1'][0]
 
             p = "< 0.001" if pvalue < 0.001 else (
                 "< 0.01" if pvalue < 0.01 else ("< 0.05" if pvalue < 0.05 else (round(pvalue, 3))))
 
-            sns.boxplot(x=self.group_col, y=self.val_col, data=self.df)
+            ax_temp = ax
+
+            if ax is None:
+                fig, ax = plt.figure()
+
+            sns.boxplot(x=self.group_col, y=self.val_col, data=self.df, ax=ax)
 
             # Jittered BoxPlots
             sns.stripplot(x=self.group_col, y=self.val_col,
-                          data=self.df, size=4, jitter=True, edgecolor="gray")
+                          data=self.df, size=4, jitter=True, edgecolor="gray", ax=ax)
 
             # Add mean and median lines
             plt.axhline(y=self.df[self.val_col].mean(),
                         color='r', linestyle='--', linewidth=1.5)
             plt.axhline(y=self.df[self.val_col].median(),
                         color='b', linestyle='--', linewidth=2)
-            plt.xlabel(f"\nKruskal-Wallis chi-squared = {chi_squared}, df = {degree_freed}, p = {p}", labelpad=20)
+            
             plt.ylabel(ylabel)
-            plt.savefig(filename + ('.pgf' if use_latex else '.pdf'),
-                        bbox_inches='tight')
-            plt.clf()
+            plt.xlabel(f"\nKruskal-Wallis chi-squared = {chi_squared}, df = {degree_freed}, p = {p}", labelpad=20)
+            
+            if ax_temp is None:
+                plt.savefig(f"{filename}.pdf", bbox_inches='tight')
+                plt.clf()
 
         # If the Kruskal-Wallis test is significant, a post-hoc analysis can be performed
         # to determine which levels of the independent variable differ from each other level.

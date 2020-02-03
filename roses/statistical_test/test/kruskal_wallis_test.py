@@ -13,7 +13,7 @@ class RunningKruskal(unittest.TestCase):
         df = pd.read_csv('./resources/kruskal.csv', sep=";")
 
         k = kruskal_wallis(df, 'fitness', 'algorithm')
-        kruskal_result, posthoc = k.apply()
+        kruskal_result, posthoc = k.apply(ylabel='teste')
 
         pvalue = kruskal_result['p-unc'][0]
 
