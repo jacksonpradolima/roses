@@ -28,7 +28,7 @@ class kruskal_wallis(object):
 
         self.r_dataframe = pandas2ri.py2ri(self.df)
 
-    def apply(self, alpha=0.05, plot=True, filename="kruskal", ax=None, ylabel=''):
+    def apply(self, ax, alpha=0.05, plot=True, ylabel=''):
         kruskal = pg.kruskal(
             dv=self.val_col, between=self.group_col, data=self.df)
         pvalue = kruskal['p-unc'][0]
@@ -39,11 +39,6 @@ class kruskal_wallis(object):
 
             p = "< 0.001" if pvalue < 0.001 else (
                 "< 0.01" if pvalue < 0.01 else ("< 0.05" if pvalue < 0.05 else (round(pvalue, 3))))
-
-            ax_temp = ax
-
-            if ax is None:
-                fig, ax = plt.figure()
 
             sns.boxplot(x=self.group_col, y=self.val_col, data=self.df, ax=ax)
 
@@ -59,10 +54,6 @@ class kruskal_wallis(object):
             
             plt.ylabel(ylabel)
             plt.xlabel(f"\nKruskal-Wallis chi-squared = {chi_squared}, df = {degree_freed}, p = {p}", labelpad=20)
-            
-            if ax_temp is None:
-                plt.savefig(f"{filename}.pdf", bbox_inches='tight')
-                plt.clf()
 
         # If the Kruskal-Wallis test is significant, a post-hoc analysis can be performed
         # to determine which levels of the independent variable differ from each other level.
