@@ -29,13 +29,12 @@ class kruskal_wallis(object):
         self.r_dataframe = pandas2ri.py2ri(self.df)
 
     def apply(self, ax, alpha=0.05, plot=True, ylabel=''):
-        kruskal = pg.kruskal(
-            dv=self.val_col, between=self.group_col, data=self.df)
+        kruskal = pg.kruskal(dv=self.val_col, between=self.group_col, data=self.df)
+
         pvalue = kruskal['p-unc'][0]
 
         if plot:            
-            chi_squared = kruskal['H'][0]
-            degree_freed = kruskal['ddof1'][0]
+            chi_squared, degree_freed = kruskal['H'][0], kruskal['ddof1'][0]
 
             p = "< 0.001" if pvalue < 0.001 else (
                 "< 0.01" if pvalue < 0.01 else ("< 0.05" if pvalue < 0.05 else (round(pvalue, 3))))
@@ -47,13 +46,13 @@ class kruskal_wallis(object):
                           data=self.df, size=4, jitter=True, edgecolor="gray", ax=ax)
 
             # Add mean and median lines
-            plt.axhline(y=self.df[self.val_col].mean(),
+            ax.axhline(y=self.df[self.val_col].mean(),
                         color='r', linestyle='--', linewidth=1.5)
-            plt.axhline(y=self.df[self.val_col].median(),
+            ax.axhline(y=self.df[self.val_col].median(),
                         color='b', linestyle='--', linewidth=2)
             
-            plt.ylabel(ylabel)
-            plt.xlabel(f"\nKruskal-Wallis chi-squared = {chi_squared}, df = {degree_freed}, p = {p}", labelpad=20)
+            ax.set_ylabel(ylabel)
+            ax.set_xlabel(f"\nKruskal-Wallis p-value = {p}", labelpad=15)
 
         # If the Kruskal-Wallis test is significant, a post-hoc analysis can be performed
         # to determine which levels of the independent variable differ from each other level.
