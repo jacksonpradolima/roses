@@ -31,33 +31,34 @@ class kruskal_wallis(object):
     def apply(self, ax, alpha=0.05, plot=True, ylabel=''):
         kruskal = pg.kruskal(dv=self.val_col, between=self.group_col, data=self.df)
 
-        pvalue = kruskal['p-unc'][0]
+        if 'p-unc' in kruskal.columns:
+            pvalue = kruskal['p-unc'][0]
 
-        if plot:            
-            chi_squared, degree_freed = kruskal['H'][0], kruskal['ddof1'][0]
+            if plot:            
+                chi_squared, degree_freed = kruskal['H'][0], kruskal['ddof1'][0]
 
-            p = "< 0.001" if pvalue < 0.001 else (
-                "< 0.01" if pvalue < 0.01 else ("< 0.05" if pvalue < 0.05 else (round(pvalue, 3))))
+                p = "< 0.001" if pvalue < 0.001 else (
+                    "< 0.01" if pvalue < 0.01 else ("< 0.05" if pvalue < 0.05 else (round(pvalue, 3))))
 
-            sns.boxplot(x=self.group_col, y=self.val_col, data=self.df, ax=ax)
+                sns.boxplot(x=self.group_col, y=self.val_col, data=self.df, ax=ax)
 
-            # Jittered BoxPlots
-            sns.stripplot(x=self.group_col, y=self.val_col,
-                          data=self.df, size=4, jitter=True, edgecolor="gray", ax=ax)
+                # Jittered BoxPlots
+                sns.stripplot(x=self.group_col, y=self.val_col,
+                              data=self.df, size=4, jitter=True, edgecolor="gray", ax=ax)
 
-            # Add mean and median lines
-            ax.axhline(y=self.df[self.val_col].mean(),
-                        color='r', linestyle='--', linewidth=1.5)
-            ax.axhline(y=self.df[self.val_col].median(),
-                        color='b', linestyle='--', linewidth=2)
-            
-            ax.set_ylabel(ylabel)
-            ax.set_xlabel(f"\nKruskal-Wallis p-value = {p}", labelpad=15)
+                # Add mean and median lines
+                ax.axhline(y=self.df[self.val_col].mean(),
+                            color='r', linestyle='--', linewidth=1.5)
+                ax.axhline(y=self.df[self.val_col].median(),
+                            color='b', linestyle='--', linewidth=2)
+                
+                ax.set_ylabel(ylabel)
+                ax.set_xlabel(f"\nKruskal-Wallis p-value = {p}", labelpad=15)
 
-        # If the Kruskal-Wallis test is significant, a post-hoc analysis can be performed
-        # to determine which levels of the independent variable differ from each other level.
-        if pvalue < alpha:
-            return kruskal, [self._post_hoc_nemenyi(), VD_A_DF(self.df, self.val_col, self.group_col)]
+            # If the Kruskal-Wallis test is significant, a post-hoc analysis can be performed
+            # to determine which levels of the independent variable differ from each other level.
+            if pvalue < alpha:
+                return kruskal, [self._post_hoc_nemenyi(), VD_A_DF(self.df, self.val_col, self.group_col)]
 
         return kruskal, None
 
