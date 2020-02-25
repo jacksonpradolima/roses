@@ -40,6 +40,7 @@ devtools::install_github("b0rxa/scmamp")
 install.packages('PMCMR')
 install.packages("https://cran.r-project.org/src/contrib/Archive/mvtnorm/mvtnorm_1.0-8.tar.gz", repos=NULL)
 install.packages('PMCMRplus')
+install.packages('sp')
 install.packages("https://cran.r-project.org/src/contrib/Archive/rgdal/rgdal_1.3-6.tar.gz", repos=NULL)
 install.packages('pgirmess')
 ```
@@ -47,9 +48,7 @@ install.packages('pgirmess')
 If you received warnings to install the R libraries, try some the commands as follow:
 
 ```console
-sudo apt install  libevent-dev  libreadline-dev 
-sudo apt install libudunits2-dev libgdal-dev libgeos-dev libproj-dev
-sudo apt install libgmp3-dev libmpfr-dev
+sudo apt install libevent-dev libreadline-dev libudunits2-dev libgdal-dev libgeos-dev libproj-dev libgmp3-dev libmpfr-dev
 ```
 
 ## Installation
