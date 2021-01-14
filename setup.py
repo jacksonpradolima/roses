@@ -9,7 +9,7 @@ with open(join(basedir, 'README.md')) as f:
 
 setup(
     name='roses',
-    version='0.3.8',
+    version='0.3.9',
     description='ROSES (R pythOn Statistical tEstS) is a package to use statistical tests from R to Python',
     long_description=README,
     long_description_content_type='text/markdown',
@@ -35,6 +35,6 @@ setup(
         'pingouin>=0.2.2',
         'matplotlib>=3.0.2',
         'tzlocal==1.5.1',
-        'rpy2==2.9.5'
+        'rpy2==3.4.2'
     ],
 )
